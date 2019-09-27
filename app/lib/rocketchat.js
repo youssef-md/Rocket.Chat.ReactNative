@@ -45,7 +45,7 @@ import { sendFileMessage, cancelUpload, isUploadActive } from './methods/sendFil
 import callJitsi from './methods/callJitsi';
 
 import { getDeviceToken } from '../notifications/push';
-import { SERVERS, SERVER_URL } from '../constants/userDefaults';
+import { SERVERS, SERVER_URL } from '../constants/credentials';
 import { setActiveUsers } from '../actions/activeUsers';
 
 const TOKEN_KEY = 'reactnativemeteor_usertoken';

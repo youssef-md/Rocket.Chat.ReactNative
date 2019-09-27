@@ -7,10 +7,10 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import Navigation from './lib/ShareNavigation';
 import store from './lib/createStore';
-import { isIOS } from './utils/deviceInfo';
 import { defaultHeader, onNavigationStateChange } from './utils/navigation';
 import RocketChat from './lib/rocketchat';
 import LayoutAnimation from './utils/layoutAnimation';
+import { IDENTIFIER } from './constants/credentials';
 
 const InsideNavigator = createStackNavigator({
 	ShareListView: {
@@ -54,9 +54,7 @@ class Root extends React.Component {
 	}
 
 	init = async() => {
-		if (isIOS) {
-			await RNUserDefaults.setName('group.ios.chat.rocket');
-		}
+		await RNUserDefaults.setName(IDENTIFIER);
 		const currentServer = await RNUserDefaults.get('currentServer');
 		const token = await RNUserDefaults.get(RocketChat.TOKEN_KEY);
 

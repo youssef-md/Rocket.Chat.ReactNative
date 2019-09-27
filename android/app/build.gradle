@@ -134,7 +134,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "chat.rocket.reactnative"
+        applicationId "chat.rocket.android.dev"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode VERSIONCODE as Integer
@@ -151,6 +151,12 @@ android {
                 keyAlias KEY_ALIAS
                 keyPassword KEY_PASSWORD
             }
+        }
+        debug {
+            storeFile project.rootProject.file('debug.keystore').getCanonicalFile()
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
         }
     }
     splits {

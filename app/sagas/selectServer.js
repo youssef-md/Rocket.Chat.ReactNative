@@ -17,7 +17,7 @@ import database from '../lib/database';
 import log from '../utils/log';
 import { extractHostname } from '../utils/server';
 import I18n from '../i18n';
-import { SERVERS, TOKEN, SERVER_URL } from '../constants/userDefaults';
+import { SERVERS, TOKEN, SERVER_URL } from '../constants/credentials';
 
 const getServerInfo = function* getServerInfo({ server, raiseError = true }) {
 	try {

@@ -14,19 +14,17 @@ import RocketChat from '../lib/rocketchat';
 import log from '../utils/log';
 import Navigation from '../lib/Navigation';
 import {
-	SERVERS, SERVER_ICON, SERVER_NAME, SERVER_URL, TOKEN, USER_ID
-} from '../constants/userDefaults';
-import { isIOS } from '../utils/deviceInfo';
+	IDENTIFIER, SERVERS, SERVER_ICON, SERVER_NAME, SERVER_URL, TOKEN, USER_ID, ANDROID_PACKAGE_CONTEXT
+} from '../constants/credentials';
 import database from '../lib/database';
 import protectedFunction from '../lib/methods/helpers/protectedFunction';
+import { isAndroid } from '../utils/deviceInfo';
 
 const restore = function* restore() {
 	try {
-		let hasMigration;
-		if (isIOS) {
-			yield RNUserDefaults.setName('group.ios.chat.rocket');
-			hasMigration = yield AsyncStorage.getItem('hasMigration');
-		}
+		yield RNUserDefaults.setName(IDENTIFIER);
+		if (isAndroid) { yield RNUserDefaults.setPackageContext(ANDROID_PACKAGE_CONTEXT); }
+		const hasMigration = yield AsyncStorage.getItem('hasMigration');
 
 		let { token, server } = yield all({
 			token: RNUserDefaults.get(RocketChat.TOKEN_KEY),
@@ -34,6 +32,8 @@ const restore = function* restore() {
 		});
 
 		let servers = yield RNUserDefaults.objectForKey(SERVERS);
+
+		console.log(servers);
 		// if not have current
 		if (servers && servers.length !== 0 && (!token || !server)) {
 			server = servers[0][SERVER_URL];
@@ -71,6 +71,7 @@ const restore = function* restore() {
 					}
 					return allRecords.length;
 				});
+				yield AsyncStorage.setItem('hasMigration', '1');
 			} catch (e) {
 				log(e);
 			}
