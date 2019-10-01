@@ -36,7 +36,7 @@ const restore = function* restore() {
 			// if not have current
 			if (servers && servers.length !== 0 && (!token || !server)) {
 				server = servers[0][SERVER_URL];
-				token = servers[0][TOKEN];
+				token = servers[0][USER_ID].length > servers[0][TOKEN].length ? servers[0][USER_ID] : servers[0][TOKEN];
 			}
 
 			// get native credentials
@@ -44,7 +44,7 @@ const restore = function* restore() {
 				try {
 					// parse servers
 					servers = yield Promise.all(servers.map(async(s) => {
-						await RNUserDefaults.set(`${ RocketChat.TOKEN_KEY }-${ s[SERVER_URL] }`, s[USER_ID]);
+						await RNUserDefaults.set(`${ RocketChat.TOKEN_KEY }-${ s[SERVER_URL] }`, s[USER_ID].length > s[TOKEN].length ? s[TOKEN] : s[USER_ID]);
 						return ({ id: s[SERVER_URL], name: s[SERVER_NAME], iconURL: s[SERVER_ICON] });
 					}));
 					const serversDB = database.servers;

@@ -17,7 +17,9 @@ import database from '../lib/database';
 import log from '../utils/log';
 import { extractHostname } from '../utils/server';
 import I18n from '../i18n';
-import { SERVERS, TOKEN, SERVER_URL } from '../constants/credentials';
+import {
+	SERVERS, TOKEN, SERVER_URL, USER_ID
+} from '../constants/credentials';
 
 const getServerInfo = function* getServerInfo({ server, raiseError = true }) {
 	try {
@@ -79,7 +81,7 @@ const handleSelectServer = function* handleSelectServer({ server, version, fetch
 		const servers = yield RNUserDefaults.objectForKey(SERVERS);
 		const userCredentials = servers && servers.find(srv => srv[SERVER_URL] === server);
 		const userLogin = userCredentials && {
-			token: userCredentials[TOKEN]
+			token: userCredentials[TOKEN].length > userCredentials[USER_ID].length ? userCredentials[TOKEN] : userCredentials[USER_ID]
 		};
 
 		if (user || userLogin) {
