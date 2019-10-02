@@ -31,7 +31,7 @@ public class CustomPushNotification extends PushNotification {
         String packageName = mContext.getPackageName();
 
         Bundle bundle = mNotificationProps.asBundle();
-        int smallIconResId = res.getIdentifier("ic_notification", "mipmap", packageName);
+        int smallIconResId = res.getIdentifier("rocket_chat_notification", "drawable", packageName);
         int largeIconResId = res.getIdentifier("ic_launcher", "mipmap", packageName);
         String title = bundle.getString("title");
         String message = bundle.getString("message");
