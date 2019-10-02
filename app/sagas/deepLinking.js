@@ -10,7 +10,8 @@ import database from '../lib/database';
 import RocketChat from '../lib/rocketchat';
 import EventEmitter from '../utils/events';
 import { appStart } from '../actions';
-import { isIOS } from '../utils/deviceInfo';
+import { isIOS, isAndroid } from '../utils/deviceInfo';
+import { IDENTIFIER, ANDROID_PACKAGE_CONTEXT } from '../constants/credentials';
 
 const roomTypes = {
 	channel: 'c', direct: 'd', group: 'p'
@@ -33,8 +34,9 @@ const handleOpen = function* handleOpen({ params }) {
 		return;
 	}
 
-	if (isIOS) {
-		yield RNUserDefaults.setName('group.ios.chat.rocket');
+	yield RNUserDefaults.setName(IDENTIFIER);
+	if (isAndroid) {
+		yield RNUserDefaults.setPackageContext(ANDROID_PACKAGE_CONTEXT);
 	}
 
 	let { host } = params;
