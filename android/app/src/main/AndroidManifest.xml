@@ -55,7 +55,7 @@
 		</activity>
 		<meta-data
 				android:name="com.bugsnag.android.API_KEY"
-				android:value="${BugsnagAPIKey}" />
+				android:value="0e62781637138bc11e6ad3ca14c03899" />
 	</application>
 
 </manifest>
