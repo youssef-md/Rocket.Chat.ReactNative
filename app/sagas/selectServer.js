@@ -63,16 +63,16 @@ const handleSelectServer = function* handleSelectServer({ server, version, fetch
 		let user = null;
 		if (userId) {
 			try {
-				user = yield userCollections.find(userId);
+				const userRecord = yield userCollections.find(userId);
 				user = {
-					token: user.token,
-					username: user.username,
-					name: user.name,
-					language: user.language,
-					status: user.status,
-					roles: user.roles
+					id: userRecord.id,
+					token: userRecord.token,
+					username: userRecord.username,
+					name: userRecord.name,
+					language: userRecord.language,
+					status: userRecord.status,
+					roles: userRecord.roles
 				};
-				user = { ...user, roles: JSON.parse(user.roles) };
 			} catch (e) {
 				// if not have user on db we check on native credentials
 				const servers = yield RNUserDefaults.objectForKey(SERVERS);

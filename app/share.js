@@ -1,17 +1,18 @@
 import React from 'react';
+import { View } from 'react-native';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { Provider } from 'react-redux';
 import RNUserDefaults from 'rn-user-defaults';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import Navigation from './lib/ShareNavigation';
 import store from './lib/createStore';
+import sharedStyles from './views/Styles';
 import { defaultHeader, onNavigationStateChange } from './utils/navigation';
 import RocketChat from './lib/rocketchat';
 import LayoutAnimation from './utils/layoutAnimation';
 import { IDENTIFIER, ANDROID_PACKAGE_CONTEXT } from './constants/credentials';
-import { isAndroid } from './utils/deviceInfo';
+import { isAndroid, isNotch } from './utils/deviceInfo';
 
 const InsideNavigator = createStackNavigator({
 	ShareListView: {
@@ -51,6 +52,9 @@ const AppContainer = createAppContainer(createSwitchNavigator({
 class Root extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			isLandscape: false
+		};
 		this.init();
 	}
 
@@ -68,9 +72,18 @@ class Root extends React.Component {
 		}
 	}
 
+	handleLayout = (event) => {
+		const { width, height } = event.nativeEvent.layout;
+		this.setState({ isLandscape: width > height });
+	}
+
 	render() {
+		const { isLandscape } = this.state;
 		return (
-			<SafeAreaProvider>
+			<View
+				style={[sharedStyles.container, isLandscape && isNotch ? sharedStyles.notchLandscapeContainer : {}]}
+				onLayout={this.handleLayout}
+			>
 				<Provider store={store}>
 					<LayoutAnimation>
 						<AppContainer
@@ -81,7 +94,7 @@ class Root extends React.Component {
 						/>
 					</LayoutAnimation>
 				</Provider>
-			</SafeAreaProvider>
+			</View>
 		);
 	}
 }
