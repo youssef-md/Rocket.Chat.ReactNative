@@ -92,7 +92,7 @@
     "redux-saga": "1.0.5",
     "remove-markdown": "^0.3.0",
     "rn-extensions-share": "^2.3.10",
-    "rn-fetch-blob": "^0.10.16",
+    "rn-fetch-blob": "0.11.2",
     "rn-user-defaults": "^1.5.0",
     "semver": "6.3.0",
     "snyk": "1.210.0",

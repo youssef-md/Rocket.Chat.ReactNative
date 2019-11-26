@@ -10,7 +10,6 @@ import store from './lib/createStore';
 import sharedStyles from './views/Styles';
 import { defaultHeader, onNavigationStateChange } from './utils/navigation';
 import RocketChat from './lib/rocketchat';
-import LayoutAnimation from './utils/layoutAnimation';
 import { IDENTIFIER, ANDROID_PACKAGE_CONTEXT } from './constants/credentials';
 import { isAndroid, isNotch } from './utils/deviceInfo';
 
