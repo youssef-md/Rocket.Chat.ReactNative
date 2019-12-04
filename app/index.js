@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { useScreens } from 'react-native-screens'; // eslint-disable-line import/no-unresolved
 import { Linking } from 'react-native';
 import PropTypes from 'prop-types';
+import RNUserDefaults from 'rn-user-defaults';
 
 import { appInit } from './actions';
 import { deepLinkingOpen } from './actions/deepLinking';
@@ -20,6 +21,8 @@ import { loggerConfig, analytics } from './utils/log';
 import Toast from './containers/Toast';
 import RocketChat from './lib/rocketchat';
 import LayoutAnimation from './utils/layoutAnimation';
+import { isAndroid } from './utils/deviceInfo';
+import { IDENTIFIER, ANDROID_PACKAGE_CONTEXT } from './constants/credentials';
 
 useScreens();
 
@@ -288,6 +291,10 @@ export default class Root extends React.Component {
 	}
 
 	init = async() => {
+		await RNUserDefaults.setName(IDENTIFIER);
+		if (isAndroid) {
+			await RNUserDefaults.setPackageContext(ANDROID_PACKAGE_CONTEXT);
+		}
 		const [notification, deepLinking] = await Promise.all([initializePushNotifications(), Linking.getInitialURL()]);
 		const parsedDeepLinkingURL = parseDeepLinking(deepLinking);
 		if (notification) {

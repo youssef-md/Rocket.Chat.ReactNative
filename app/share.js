@@ -12,6 +12,7 @@ import { defaultHeader, onNavigationStateChange } from './utils/navigation';
 import RocketChat from './lib/rocketchat';
 import { IDENTIFIER, ANDROID_PACKAGE_CONTEXT } from './constants/credentials';
 import { isAndroid, isNotch } from './utils/deviceInfo';
+import LayoutAnimation from './utils/layoutAnimation';
 
 const InsideNavigator = createStackNavigator({
 	ShareListView: {
@@ -59,7 +60,9 @@ class Root extends React.Component {
 
 	init = async() => {
 		await RNUserDefaults.setName(IDENTIFIER);
-		if (isAndroid) { await RNUserDefaults.setPackageContext(ANDROID_PACKAGE_CONTEXT); }
+		if (isAndroid) {
+			await RNUserDefaults.setPackageContext(ANDROID_PACKAGE_CONTEXT);
+		}
 		const currentServer = await RNUserDefaults.get('currentServer');
 		const token = await RNUserDefaults.get(RocketChat.TOKEN_KEY);
 
