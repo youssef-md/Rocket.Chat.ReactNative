@@ -52,9 +52,8 @@ Follow the [React Native Getting Started Guide](https://facebook.github.io/react
     $ react-native run-android
     ```
 
-### Running single server
-If you don't need multiple servers, there is a branch `single-server` just for that.
-Readme will guide you on how to config.
+## Running single server
+- Just add your server to `app.json`. It's currently set to log into `https://open.rocket.chat`
 
 ## Current priorities
 1) Jitsi integration
