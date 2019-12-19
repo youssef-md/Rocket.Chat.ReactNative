@@ -1,8 +1,8 @@
 import { AsyncStorage } from 'react-native';
 import { put, takeLatest, all } from 'redux-saga/effects';
-import SplashScreen from 'react-native-splash-screen';
 import RNUserDefaults from 'rn-user-defaults';
 import { sanitizedRaw } from '@nozbe/watermelondb/RawRecord';
+import RNBootSplash from 'react-native-bootsplash';
 
 import * as actions from '../actions';
 import { selectServerRequest } from '../actions/server';
@@ -18,6 +18,17 @@ import {
 } from '../constants/credentials';
 import database from '../lib/database';
 import protectedFunction from '../lib/methods/helpers/protectedFunction';
+
+export const initLocalSettings = function* initLocalSettings() {
+	const sortPreferences = yield RocketChat.getSortPreferences();
+	yield put(setAllPreferences(sortPreferences));
+
+	const useMarkdown = yield RocketChat.getUseMarkdown();
+	yield put(toggleMarkdown(useMarkdown));
+
+	const allowCrashReport = yield RocketChat.getAllowCrashReport();
+	yield put(toggleCrashReport(allowCrashReport));
+};
 
 const restore = function* restore() {
 	try {
@@ -79,15 +90,6 @@ const restore = function* restore() {
 			}
 		}
 
-		const sortPreferences = yield RocketChat.getSortPreferences();
-		yield put(setAllPreferences(sortPreferences));
-
-		const useMarkdown = yield RocketChat.getUseMarkdown();
-		yield put(toggleMarkdown(useMarkdown));
-
-		const allowCrashReport = yield RocketChat.getAllowCrashReport();
-		yield put(toggleCrashReport(allowCrashReport));
-
 		if (!token || !server) {
 			yield all([
 				RNUserDefaults.clear(RocketChat.TOKEN_KEY),
@@ -116,11 +118,12 @@ const start = function* start({ root }) {
 	} else if (root === 'outside') {
 		yield Navigation.navigate('OutsideStack');
 	}
-	SplashScreen.hide();
+	RNBootSplash.hide();
 };
 
 const root = function* root() {
 	yield takeLatest(APP.INIT, restore);
 	yield takeLatest(APP.START, start);
+	yield takeLatest(APP.INIT_LOCAL_SETTINGS, initLocalSettings);
 };
 export default root;

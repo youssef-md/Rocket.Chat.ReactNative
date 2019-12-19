@@ -6,8 +6,9 @@ import Message from './Message';
 import debounce from '../../utils/debounce';
 import { SYSTEM_MESSAGES, getMessageTranslation } from './utils';
 import messagesStatus from '../../constants/messagesStatus';
+import { withTheme } from '../../theme';
 
-export default class MessageContainer extends React.Component {
+class MessageContainer extends React.Component {
 	static propTypes = {
 		item: PropTypes.object.isRequired,
 		user: PropTypes.shape({
@@ -39,16 +40,18 @@ export default class MessageContainer extends React.Component {
 		replyBroadcast: PropTypes.func,
 		reactionInit: PropTypes.func,
 		fetchThreadName: PropTypes.func,
-		onOpenFileModal: PropTypes.func,
+		showAttachment: PropTypes.func,
 		onReactionLongPress: PropTypes.func,
 		navToRoomInfo: PropTypes.func,
-		callJitsi: PropTypes.func
+		callJitsi: PropTypes.func,
+		theme: PropTypes.string
 	}
 
 	static defaultProps = {
 		onLongPress: () => {},
 		archived: false,
-		broadcast: false
+		broadcast: false,
+		theme: 'light'
 	}
 
 	componentDidMount() {
@@ -61,7 +64,11 @@ export default class MessageContainer extends React.Component {
 		}
 	}
 
-	shouldComponentUpdate() {
+	shouldComponentUpdate(nextProps) {
+		const { theme } = this.props;
+		if (nextProps.theme !== theme) {
+			return true;
+		}
 		return false;
 	}
 
@@ -205,7 +212,7 @@ export default class MessageContainer extends React.Component {
 
 	render() {
 		const {
-			item, user, style, archived, baseUrl, useRealName, broadcast, fetchThreadName, customThreadTimeFormat, onOpenFileModal, timeFormat, useMarkdown, isReadReceiptEnabled, autoTranslateRoom, autoTranslateLanguage, navToRoomInfo, getCustomEmoji, isThreadRoom, callJitsi
+			item, user, style, archived, baseUrl, useRealName, broadcast, fetchThreadName, customThreadTimeFormat, showAttachment, timeFormat, useMarkdown, isReadReceiptEnabled, autoTranslateRoom, autoTranslateLanguage, navToRoomInfo, getCustomEmoji, isThreadRoom, callJitsi, theme
 		} = this.props;
 		const {
 			id, msg, ts, attachments, urls, reactions, t, avatar, u, alias, editedBy, role, drid, dcount, dlm, tmid, tcount, tlm, tmsg, mentions, channels, unread, autoTranslate: autoTranslateMessage
@@ -268,11 +275,14 @@ export default class MessageContainer extends React.Component {
 				replyBroadcast={this.replyBroadcast}
 				reactionInit={this.reactionInit}
 				onDiscussionPress={this.onDiscussionPress}
-				onOpenFileModal={onOpenFileModal}
+				showAttachment={showAttachment}
 				getCustomEmoji={getCustomEmoji}
 				navToRoomInfo={navToRoomInfo}
 				callJitsi={callJitsi}
+				theme={theme}
 			/>
 		);
 	}
 }
+
+export default withTheme(MessageContainer);
