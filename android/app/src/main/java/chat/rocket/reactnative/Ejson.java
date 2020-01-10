@@ -11,7 +11,7 @@ public class Ejson {
     Sender sender;
 
     private String TOKEN_KEY = "reactnativemeteor_usertoken-";
-    private SharedPreferences sharedPreferences = RNUserDefaultsModule.getPreferences(CustomPushNotification.reactApplicationContext);
+    private SharedPreferences sharedPreferences = RNUserDefaultsModule.getPreferences(CustomPushNotification.reactApplicationContext, "chat.rocket.android", "rocket.chat");
 
     public String getAvatarUri() {
         if (type == null || !type.equals("d")) {
