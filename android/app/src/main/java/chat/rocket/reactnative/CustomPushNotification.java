@@ -122,7 +122,7 @@ public class CustomPushNotification extends PushNotification {
         final Resources res = mContext.getResources();
         String packageName = mContext.getPackageName();
 
-        int smallIconResId = res.getIdentifier("ic_notification", "mipmap", packageName);
+        int smallIconResId = res.getIdentifier("rocket_chat_notification", "drawable", packageName);
 
         Gson gson = new Gson();
         Ejson ejson = gson.fromJson(bundle.getString("ejson", "{}"), Ejson.class);
@@ -175,7 +175,7 @@ public class CustomPushNotification extends PushNotification {
 
         final Resources res = mContext.getResources();
         String packageName = mContext.getPackageName();
-        int smallIconResId = res.getIdentifier("ic_notification", "mipmap", packageName);
+        int smallIconResId = res.getIdentifier("rocket_chat_notification", "drawable", packageName);
 
         Intent replyIntent = new Intent(mContext, ReplyBroadcast.class);
         replyIntent.setAction(KEY_REPLY);
