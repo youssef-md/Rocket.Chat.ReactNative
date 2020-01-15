@@ -10,7 +10,7 @@ import Orientation from 'react-native-orientation-locker';
 import { selectServerRequest, serverInitAdd, serverFinishAdd } from '../../actions/server';
 import { appStart as appStartAction } from '../../actions';
 import I18n from '../../i18n';
-import openLink from '../../utils/openLink';
+// import openLink from '../../utils/openLink';
 import Button from './Button';
 import styles from './styles';
 import { isIOS, isNotch, isTablet } from '../../utils/deviceInfo';
@@ -105,10 +105,10 @@ class OnboardingView extends React.Component {
 		this.newServer('https://open.rocket.chat');
 	}
 
-	createWorkspace = () => {
-		const { theme } = this.props;
-		openLink('https://cloud.rocket.chat/trial', theme);
-	}
+	// createWorkspace = () => {
+	// 	const { theme } = this.props;
+	// 	openLink('https://cloud.rocket.chat/trial', theme);
+	// }
 
 	renderClose = () => {
 		const { theme } = this.props;
@@ -166,14 +166,14 @@ class OnboardingView extends React.Component {
 						testID='join-community-button'
 						theme={theme}
 					/>
-					<Button
+					{/* <Button
 						type='primary'
 						title={I18n.t('Create_a_new_workspace')}
 						icon={<CustomIcon name='plus' size={30} color={themes[theme].buttonText} />}
 						onPress={this.createWorkspace}
 						testID='create-workspace-button'
 						theme={theme}
-					/>
+					/> */}
 				</View>
 				{this.renderClose()}
 			</SafeAreaView>
