@@ -37,6 +37,8 @@ target 'RocketChatRN' do
   use_native_modules!
   use_unimodules!
 
+  pod 'RNQuickAction', :path => '../node_modules/react-native-quick-actions'
+
 end
 
 target 'ShareRocketChatRN' do

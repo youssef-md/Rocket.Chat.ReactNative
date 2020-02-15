@@ -196,6 +196,7 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-quick-actions')
     addUnimodulesDependencies()
     implementation project(':watermelondb')
     implementation project(':reactnativenotifications')
