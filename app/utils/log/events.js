@@ -67,7 +67,6 @@ export default {
 	NAVIGATE_TO_SCREEN_LOCK: 'navigate_to_screen_lock',
 	SEND_MESSAGE: 'send_message',
 	SHOW_EMOJI_KEYBOARD: 'show_emoji_keyboard',
-	SHOW_CUSTOM_EMOJI: 'show_custom_emoji',
 	START_AUDIO_RECORDING: 'start_audio_recording',
 	END_AUDIO_RECORDING: 'end_audio_recording',
 	END_AUDIO_RECORDING_FAIL: 'end_audio_recording_fail',

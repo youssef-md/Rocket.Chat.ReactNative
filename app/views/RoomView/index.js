@@ -663,7 +663,6 @@ class RoomView extends React.Component {
 		const { customEmojis } = this.props;
 		const emoji = customEmojis[name];
 		if (emoji) {
-			logEvent(events.SHOW_CUSTOM_EMOJI);
 			return emoji;
 		}
 		return null;
