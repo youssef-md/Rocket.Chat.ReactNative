@@ -8,6 +8,7 @@ import RocketChat from '../lib/rocketchat';
 import { getUserSelector } from '../selectors/login';
 
 import sharedStyles from './Styles';
+import { logEvent, events } from '../utils/log';
 
 const formatUrl = (url, baseUrl, uriSize, avatarAuthURLFragment) => (
 	`${ baseUrl }/avatar/${ url }?format=png&width=${ uriSize }&height=${ uriSize }${ avatarAuthURLFragment }`
@@ -75,6 +76,7 @@ class JitsiMeetView extends React.Component {
 		this.jitsiTimeout = BackgroundTimer.setInterval(() => {
 			RocketChat.updateJitsiTimeout(this.rid).catch(e => console.log(e));
 		}, 10000);
+		logEvent(events.JITSI_CONFERENCE_JOIN);
 	}
 
 	onConferenceTerminated = () => {
@@ -83,6 +85,7 @@ class JitsiMeetView extends React.Component {
 			BackgroundTimer.clearInterval(this.jitsiTimeout);
 		}
 		navigation.pop();
+		logEvent(events.JITSI_CALL_TERMINATED);
 	}
 
 	render() {

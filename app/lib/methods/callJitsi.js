@@ -1,5 +1,6 @@
 import reduxStore from '../createStore';
 import Navigation from '../Navigation';
+import { logEvent, events } from '../../utils/log';
 
 const jitsiBaseUrl = ({
 	Jitsi_Enabled, Jitsi_SSL, Jitsi_Domain, Jitsi_URL_Room_Prefix, uniqueID
@@ -27,7 +28,7 @@ async function callJitsi(rid, onlyAudio = false) {
 		try {
 			accessToken = await this.sdk.methodCall('jitsi:generateAccessToken', rid);
 		} catch (e) {
-			// do nothing
+			logEvent(onlyAudio ? events.JITSI_VOICE_CALL_FAIL : events.JITSI_VIDEO_CALL_FAIL);
 		}
 	}
 
@@ -36,6 +37,7 @@ async function callJitsi(rid, onlyAudio = false) {
 	}
 
 	Navigation.navigate('JitsiMeetView', { url: `${ jitsiBaseUrl(settings) }${ rid }${ queryString }`, onlyAudio, rid });
+	logEvent(onlyAudio ? events.JITSI_VOICE_CALL : events.JITSI_VIDEO_CALL);
 }
 
 export default callJitsi;

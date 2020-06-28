@@ -127,5 +127,11 @@ export default {
 	SEND_CRASH_REPORT_ON: 'send_crash_report_on',
 	SEND_CRASH_REPORT_OFF: 'send_crash_report_off',
 	CLEAR_LOCAL_SERVER_CACHE: 'clear_local_server_cache',
-	LOG_OUT: 'log_out'
+	LOG_OUT: 'log_out',
+	JITSI_VOICE_CALL: 'jitsi_voice_call',
+	JITSI_VOICE_CALL_FAIL: 'jitsi_voice_call_fail',
+	JITSI_VIDEO_CALL: 'jitsi_video_call',
+	JITSI_VIDEO_CALL_FAIL: 'jitsi_video_call_fail',
+	JITSI_CALL_TERMINATED: 'jitsi_call_terminated',
+	JITSI_CONFERENCE_JOIN: 'jitsi_conference_join'
 };
