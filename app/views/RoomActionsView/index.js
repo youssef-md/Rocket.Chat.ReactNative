@@ -14,7 +14,7 @@ import sharedStyles from '../Styles';
 import Avatar from '../../containers/Avatar';
 import Status from '../../containers/Status';
 import RocketChat from '../../lib/rocketchat';
-import log from '../../utils/log';
+import log, { events, logEvent } from '../../utils/log';
 import RoomTypeIcon from '../../containers/RoomTypeIcon';
 import I18n from '../../i18n';
 import scrollPersistTaps from '../../utils/scrollPersistTaps';
@@ -139,6 +139,10 @@ class RoomActionsView extends React.Component {
 		if (item.route) {
 			const { navigation } = this.props;
 			navigation.navigate(item.route, item.params);
+			logEvent(
+				events[`NAVIGATE_TO_${ item.route.replace('View', '').toUpperCase() }`],
+				{ RoomType: item.params && item.params.name }
+			);
 		}
 		if (item.event) {
 			return item.event();
