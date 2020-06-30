@@ -217,5 +217,10 @@ export default {
 	COMMAND_MATH: 'command_math',
 	COMMAND_MATH_FAIL: 'command_math_fail',
 	COMMAND_JITSI: 'command_jitsi',
-	COMMAND_JITSI_FAIL: 'command_jitsi_fail'
+	COMMAND_JITSI_FAIL: 'command_jitsi_fail',
+	AUTO_TRANSLATE_ENABLE: 'auto_translate_enable',
+	AUTO_TRANSLATE_DISABLE: 'auto_translate_disable',
+	AUTO_TRANSLATE_TOGGLE_FAIL: 'auto_translate_toggle_fail',
+	AUTO_TRANSLATE_SAVE: 'auto_translate_save',
+	AUTO_TRANSLATE_SAVE_FAIL: 'auto_translate_save_fail'
 };

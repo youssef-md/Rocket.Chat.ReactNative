@@ -15,6 +15,7 @@ import { SWITCH_TRACK_COLOR, themes } from '../../constants/colors';
 import scrollPersistTaps from '../../utils/scrollPersistTaps';
 import { withTheme } from '../../theme';
 import SafeAreaView from '../../containers/SafeAreaView';
+import { logEvent, events } from '../../utils/log';
 
 const styles = StyleSheet.create({
 	contentContainerStyle: {
@@ -111,8 +112,10 @@ class AutoTranslateView extends React.Component {
 				options: { defaultLanguage: 'en' }
 			});
 			this.setState({ enableAutoTranslate: !enableAutoTranslate });
+			logEvent(enableAutoTranslate ? events.AUTO_TRANSLATE_ENABLE : events.AUTO_TRANSLATE_DISABLE);
 		} catch (error) {
 			console.log(error);
+			logEvent(events.AUTO_TRANSLATE_TOGGLE_FAIL);
 		}
 	}
 
@@ -124,8 +127,10 @@ class AutoTranslateView extends React.Component {
 				value: language
 			});
 			this.setState({ selectedLanguage: language });
+			logEvent(events.AUTO_TRANSLATE_SAVE, { language });
 		} catch (error) {
 			console.log(error);
+			logEvent(events.AUTO_TRANSLATE_SAVE_FAIL);
 		}
 	}
 
