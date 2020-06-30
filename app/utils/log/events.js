@@ -76,6 +76,8 @@ export default {
 	NAVIGATE_TO_FORWARDLIVECHAT: 'navigate_to_forward_livechat',
 	NAVIGATE_TO_VISITORNAVIGATION: 'navigate_to_visitor_navigation',
 	NAVIGATE_TO_ROOM_THREADS: 'navigate_to_room_threads',
+	NAVIGATE_TO_ROOMINFOEDIT: 'navigate_to_room_info_edit',
+	NAVIGATE_TO_LIVECHATEDIT: 'navigate_to_livechat_edit',
 	SEND_MESSAGE: 'send_message',
 	SHOW_EMOJI_KEYBOARD: 'show_emoji_keyboard',
 	START_AUDIO_RECORDING: 'start_audio_recording',
@@ -224,5 +226,12 @@ export default {
 	AUTO_TRANSLATE_SAVE: 'auto_translate_save',
 	AUTO_TRANSLATE_SAVE_FAIL: 'auto_translate_save_fail',
 	NOTIFICATION_PREFS_SAVE: 'notification_prefs_save',
-	NOTIFICATION_PREFS_SAVE_FAIL: 'notification_prefs_save_fail'
+	NOTIFICATION_PREFS_SAVE_FAIL: 'notification_prefs_save_fail',
+	ROOM_INFO_EDIT_SAVE: 'room_info_edit_save',
+	ROOM_INFO_EDIT_SAVE_FAIL: 'room_info_edit_save_fail',
+	ROOM_INFO_EDIT_RESET: 'room_info_edit_reset',
+	ROOM_INFO_EDIT_ARCHIVE: 'room_info_edit_archive',
+	ROOM_INFO_EDIT_ARCHIVE_FAIL: 'room_info_edit_archive_fail',
+	ROOM_INFO_EDIT_DELETE: 'room_info_edit_delete',
+	ROOM_INFO_EDIT_DELETE_FAIL: 'room_info_edit_delete_fail'
 };

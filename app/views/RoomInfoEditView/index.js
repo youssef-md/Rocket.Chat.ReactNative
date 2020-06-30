@@ -23,7 +23,7 @@ import RCTextInput from '../../containers/TextInput';
 import Loading from '../../containers/Loading';
 import SwitchContainer from './SwitchContainer';
 import random from '../../utils/random';
-import log from '../../utils/log';
+import log, { events, logEvent } from '../../utils/log';
 import I18n from '../../i18n';
 import StatusBar from '../../containers/StatusBar';
 import { themes } from '../../constants/colors';
@@ -152,6 +152,7 @@ class RoomInfoEditView extends React.Component {
 	reset = () => {
 		this.clearErrors();
 		this.init(this.room);
+		logEvent(events.ROOM_INFO_EDIT_RESET);
 	}
 
 	formIsChanged = () => {
@@ -243,8 +244,10 @@ class RoomInfoEditView extends React.Component {
 		setTimeout(() => {
 			if (error) {
 				showErrorAlert(I18n.t('There_was_an_error_while_action', { action: I18n.t('saving_settings') }));
+				logEvent(events.ROOM_INFO_EDIT_SAVE_FAIL);
 			} else {
 				EventEmitter.emit(LISTENER, { message: I18n.t('Settings_succesfully_changed') });
+				logEvent(events.ROOM_INFO_EDIT_SAVE, { type: t ? 'p' : 'c', readOnly: ro, systemMessages });
 			}
 		}, 100);
 	}
@@ -290,8 +293,10 @@ class RoomInfoEditView extends React.Component {
 					onPress: async() => {
 						try {
 							await RocketChat.toggleArchiveRoom(rid, t, !archived);
+							logEvent(events.ROOM_INFO_EDIT_ARCHIVE);
 						} catch (e) {
 							log(e);
+							logEvent(events.ROOM_INFO_EDIT_ARCHIVE_FAIL);
 						}
 					}
 				}

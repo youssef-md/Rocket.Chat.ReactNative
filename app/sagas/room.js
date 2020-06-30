@@ -69,9 +69,11 @@ const handleDeleteRoom = function* handleDeleteRoom({ rid, t }) {
 		const result = yield RocketChat.deleteRoom(rid, t);
 		if (result.success) {
 			yield handleRemovedRoom();
+			logEvent(events.ROOM_INFO_EDIT_DELETE);
 		}
 	} catch (e) {
 		Alert.alert(I18n.t('Oops'), I18n.t('There_was_an_error_while_action', { action: I18n.t('deleting_room') }));
+		logEvent(events.ROOM_INFO_EDIT_DELETE_FAIL);
 	}
 };
 
