@@ -8,7 +8,7 @@ import Navigation from '../lib/Navigation';
 import * as types from '../actions/actionsTypes';
 import { removedRoom } from '../actions/room';
 import RocketChat from '../lib/rocketchat';
-import log from '../utils/log';
+import log, { logEvent, events } from '../utils/log';
 import I18n from '../i18n';
 import { showErrorAlert } from '../utils/info';
 
@@ -52,6 +52,7 @@ const handleLeaveRoom = function* handleLeaveRoom({ rid, t }) {
 		const result = yield RocketChat.leaveRoom(rid, t);
 		if (result.success) {
 			yield handleRemovedRoom();
+			logEvent(events.LEAVE_ROOM);
 		}
 	} catch (e) {
 		if (e.data && e.data.errorType === 'error-you-are-last-owner') {
@@ -59,6 +60,7 @@ const handleLeaveRoom = function* handleLeaveRoom({ rid, t }) {
 		} else {
 			Alert.alert(I18n.t('Oops'), I18n.t('There_was_an_error_while_action', { action: I18n.t('leaving_room') }));
 		}
+		logEvent(events.LEAVE_ROOM_FAIL);
 	}
 };
 

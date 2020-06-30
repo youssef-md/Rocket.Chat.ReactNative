@@ -75,7 +75,7 @@ export default {
 	NAVIGATE_TO_INVITEUSERS: 'navigate_to_invite_users',
 	NAVIGATE_TO_FORWARDLIVECHAT: 'navigate_to_forward_livechat',
 	NAVIGATE_TO_VISITORNAVIGATION: 'navigate_to_visitor_navigation',
-
+	NAVIGATE_TO_ROOM_THREADS: 'navigate_to_room_threads',
 	SEND_MESSAGE: 'send_message',
 	SHOW_EMOJI_KEYBOARD: 'show_emoji_keyboard',
 	START_AUDIO_RECORDING: 'start_audio_recording',
@@ -144,5 +144,8 @@ export default {
 	JITSI_VIDEO_CALL: 'jitsi_video_call',
 	JITSI_VIDEO_CALL_FAIL: 'jitsi_video_call_fail',
 	JITSI_CALL_TERMINATED: 'jitsi_call_terminated',
-	JITSI_CONFERENCE_JOIN: 'jitsi_conference_join'
+	JITSI_CONFERENCE_JOIN: 'jitsi_conference_join',
+	SHARE_ROOM: 'share_room',
+	LEAVE_ROOM: 'leave_room',
+	LEAVE_ROOM_FAIL: 'leave_room_fail'
 };

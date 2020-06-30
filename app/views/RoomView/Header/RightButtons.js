@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { CustomHeaderButtons, Item } from '../../../containers/HeaderButton';
 import database from '../../../lib/database';
 import { getUserSelector } from '../../../selectors/login';
+import { logEvent, events } from '../../../utils/log';
 
 class RightButtonsContainer extends React.PureComponent {
 	static propTypes = {
@@ -65,6 +66,7 @@ class RightButtonsContainer extends React.PureComponent {
 			navigation.navigate('ModalStackNavigator', { screen: 'ThreadMessagesView', params: { rid, t } });
 		} else {
 			navigation.navigate('ThreadMessagesView', { rid, t });
+			logEvent(events.NAVIGATE_TO_ROOM_THREADS);
 		}
 	}
 

@@ -529,6 +529,7 @@ class RoomActionsView extends React.Component {
 		Share.share({
 			message: permalink
 		});
+		logEvent(events.SHARE_ROOM);
 	};
 
 	leaveChannel = () => {
