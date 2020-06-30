@@ -716,9 +716,11 @@ class MessageBox extends Component {
 					const [{ appId }] = slashCommand;
 					const triggerId = generateTriggerId(appId);
 					RocketChat.runSlashCommand(command, roomId, messageWithoutCommand, triggerId, tmid || messageTmid);
+					logEvent(events[`COMMAND_${ command.replace(/-/g, '_').toUpperCase() }`]);
 					replyCancel();
 				} catch (e) {
 					log(e);
+					logEvent(events[`COMMAND_${ command.replace(/-/g, '_').toUpperCase() }_FAIL`]);
 				}
 				this.clearInput();
 				return;
