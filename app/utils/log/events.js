@@ -222,5 +222,7 @@ export default {
 	AUTO_TRANSLATE_DISABLE: 'auto_translate_disable',
 	AUTO_TRANSLATE_TOGGLE_FAIL: 'auto_translate_toggle_fail',
 	AUTO_TRANSLATE_SAVE: 'auto_translate_save',
-	AUTO_TRANSLATE_SAVE_FAIL: 'auto_translate_save_fail'
+	AUTO_TRANSLATE_SAVE_FAIL: 'auto_translate_save_fail',
+	NOTIFICATION_PREFS_SAVE: 'notification_prefs_save',
+	NOTIFICATION_PREFS_SAVE_FAIL: 'notification_prefs_save_fail'
 };

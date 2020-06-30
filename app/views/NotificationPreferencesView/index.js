@@ -16,6 +16,7 @@ import RocketChat from '../../lib/rocketchat';
 import { withTheme } from '../../theme';
 import protectedFunction from '../../lib/methods/helpers/protectedFunction';
 import SafeAreaView from '../../containers/SafeAreaView';
+import { events, logEvent } from '../../utils/log';
 
 const SectionTitle = React.memo(({ title, theme }) => (
 	<Text
@@ -192,10 +193,11 @@ class NotificationPreferencesView extends React.Component {
 		try {
 			const result = await RocketChat.saveNotificationSettings(this.rid, params);
 			if (result.success) {
+				logEvent(events.NOTIFICATION_PREFS_SAVE, params);
 				return;
 			}
 		} catch {
-			// do nothing
+			logEvent(events.NOTIFICATION_PREFS_SAVE_FAIL);
 		}
 
 		await db.action(async() => {
