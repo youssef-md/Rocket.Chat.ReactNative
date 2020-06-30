@@ -18,6 +18,7 @@ import StatusBar from '../../containers/StatusBar';
 import { themes } from '../../constants/colors';
 import { withTheme } from '../../theme';
 import SafeAreaView from '../../containers/SafeAreaView';
+import { events, logEvent } from '../../utils/log';
 
 class InviteUsersView extends React.Component {
 	static navigationOptions = {
@@ -55,11 +56,13 @@ class InviteUsersView extends React.Component {
 			return;
 		}
 		Share.share({ message: invite.url });
+		logEvent(events.INVITE_USERS_SHARE_LINK);
 	}
 
 	edit = () => {
 		const { navigation } = this.props;
 		navigation.navigate('InviteUsersEditView', { rid: this.rid });
+		logEvent(events.NAVIGATE_TO_INVITE_USERS_EDIT);
 	}
 
 	linkExpirationText = () => {

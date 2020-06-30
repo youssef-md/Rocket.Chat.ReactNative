@@ -78,6 +78,7 @@ export default {
 	NAVIGATE_TO_ROOM_THREADS: 'navigate_to_room_threads',
 	NAVIGATE_TO_ROOMINFOEDIT: 'navigate_to_room_info_edit',
 	NAVIGATE_TO_LIVECHATEDIT: 'navigate_to_livechat_edit',
+	NAVIGATE_TO_INVITE_USERS_EDIT: 'navigate_to_invite_users_edit',
 	SEND_MESSAGE: 'send_message',
 	SHOW_EMOJI_KEYBOARD: 'show_emoji_keyboard',
 	START_AUDIO_RECORDING: 'start_audio_recording',
@@ -233,5 +234,9 @@ export default {
 	ROOM_INFO_EDIT_ARCHIVE: 'room_info_edit_archive',
 	ROOM_INFO_EDIT_ARCHIVE_FAIL: 'room_info_edit_archive_fail',
 	ROOM_INFO_EDIT_DELETE: 'room_info_edit_delete',
-	ROOM_INFO_EDIT_DELETE_FAIL: 'room_info_edit_delete_fail'
+	ROOM_INFO_EDIT_DELETE_FAIL: 'room_info_edit_delete_fail',
+	INVITE_USERS_SHARE_LINK: 'invite_users_share_link',
+	INVITE_USERS_GENERATE_NEW_LINK: 'invite_users_generate_new_link',
+	INVITE_USERS_GENERATE_NEW_LINK_FAIL: 'invite_users_generate_new_link_f' // to not exceed 32 chars
+
 };

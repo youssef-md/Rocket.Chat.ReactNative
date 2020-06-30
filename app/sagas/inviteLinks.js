@@ -6,7 +6,7 @@ import { Alert } from 'react-native';
 import { INVITE_LINKS } from '../actions/actionsTypes';
 import { inviteLinksSuccess, inviteLinksFailure, inviteLinksSetInvite } from '../actions/inviteLinks';
 import RocketChat from '../lib/rocketchat';
-import log from '../utils/log';
+import log, { logEvent, events } from '../utils/log';
 import Navigation from '../lib/Navigation';
 import I18n from '../i18n';
 
@@ -54,10 +54,12 @@ const handleCreateInviteLink = function* handleCreateInviteLink({ rid }) {
 		});
 		if (!result.success) {
 			Alert.alert(I18n.t('Oops'), I18n.t('There_was_an_error_while_action', { action: I18n.t('creating_invite') }));
+			logEvent(events.INVITE_USERS_GENERATE_NEW_LINK_FAIL);
 			return;
 		}
 
 		yield put(inviteLinksSetInvite(result));
+		logEvent(events.INVITE_USERS_GENERATE_NEW_LINK, { days: inviteLinks.days, maxUsers: inviteLinks.maxUses });
 	} catch (e) {
 		log(e);
 	}
