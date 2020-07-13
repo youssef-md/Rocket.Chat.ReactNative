@@ -1,6 +1,5 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
-import hoistNonReactStatics from 'hoist-non-react-statics';
 
 export const DimensionsContext = React.createContext(Dimensions.get('window'));
 
@@ -10,7 +9,6 @@ export function withDimensions(Component) {
 			{contexts => <Component {...props} {...contexts} />}
 		</DimensionsContext.Consumer>
 	);
-	hoistNonReactStatics(DimensionsComponent, Component);
 	return DimensionsComponent;
 }
 
